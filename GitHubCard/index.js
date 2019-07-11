@@ -28,7 +28,7 @@ axios.get('https://api.github.com/users/nerissaj')
  const userName = data.data.login
 const userLoc = data.data.location
 
-const profileHref = data.data.html_url
+const a = data.data.avatar_url
 const followers = data.data.followers
 const following = data.data.following
 const bio = data.data.bio
@@ -48,7 +48,14 @@ cards.appendChild(element)
 */
 
 const followersArray = [];
+followersArray[0] = "tetondan";
+followersArray[1] = "dustinmyers";
+followersArray[2] = "justsml";
+followersArray[3] = "luishrd";
 
+
+//document.querySelector('.username').textContent = 
+//followersArray.forEach
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
@@ -76,26 +83,27 @@ const name = document.createElement('h3')
 const userName = document.createElement('p')
 const userLoc = document.createElement('p')
 const profile = document.createElement('p')
-const profileHref = document.createElement('a')
+const a = document.createElement('a')
+a.href="https://avatars0.githubusercontent.com/u/24694613?v=4"
 const followers = document.createElement('p')
 const following = document.createElement('p')
 const bio = document.createElement('p')
 card.classList.add('card')
 img.classList.add('user-img')
-img.textContent =`${data.data.avatar_url}`
+img.src =`${data.data.avatar_url}`
 cardInfo.classList.add('card-info')
 name.classList.add('name')
 userName.classList.add('username')
 userLoc.classList.add('location')
 profile.classList.add('profile')
-profileHref.classList.add('usersite')
+a.classList.add('a')
 followers.classList.add('followers')
 following.classList.add('following')
 bio.classList.add('bio')
 name.textContent=`${data.data.name}`
 userName.textContent = `${data.data.login}`
 userLoc.textContent =`${data.data.location}`
-profileHref.textContent = `https://avatars0.githubusercontent.com/u/24694613?v=4`
+a.href = "https://avatars0.githubusercontent.com/u/24694613?v=4";
 followers.textContent = `${data.data.followers}`
 following.textContent =`${data.data.following}`
 bio.textContent = `${data.data.bio}`
@@ -106,7 +114,7 @@ card.appendChild(name)
 card.appendChild(userName)
 card.appendChild(userLoc)
 card.appendChild(profile)
-card.appendChild(profileHref)
+card.appendChild(a)
 card.appendChild(followers)
 card.appendChild(following)
 card.appendChild(bio)

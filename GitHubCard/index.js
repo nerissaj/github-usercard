@@ -1,7 +1,12 @@
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
+           
 */
+const cards = document.querySelector('.cards')
+axios.get('https://api.github.com/users/nerissaj')
+.then(data =>{
+  console.log('response', data)
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -14,6 +19,24 @@
            create a new component and add it to the DOM as a child of .cards
 */
 
+
+ 
+ const img = data.data.avatar_url
+
+
+ const name = data.data.name
+ const userName = data.data.login
+const userLoc = data.data.location
+
+const profileHref = data.data.html_url
+const followers = data.data.followers
+const following = data.data.following
+const bio = data.data.bio
+const element = createGithubCard(data)
+
+
+cards.appendChild(element)
+})
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
@@ -45,7 +68,55 @@ const followersArray = [];
 </div>
 
 */
+function createGithubCard(data){
+const card = document.createElement('div')
+const img = document.createElement('img')
+const cardInfo = document.createElement('div')
+const name = document.createElement('h3')
+const userName = document.createElement('p')
+const userLoc = document.createElement('p')
+const profile = document.createElement('p')
+const profileHref = document.createElement('a')
+const followers = document.createElement('p')
+const following = document.createElement('p')
+const bio = document.createElement('p')
+card.classList.add('card')
+img.classList.add('user-img')
+img.textContent =`${data.data.avatar_url}`
+cardInfo.classList.add('card-info')
+name.classList.add('name')
+userName.classList.add('username')
+userLoc.classList.add('location')
+profile.classList.add('profile')
+profileHref.classList.add('usersite')
+followers.classList.add('followers')
+following.classList.add('following')
+bio.classList.add('bio')
+name.textContent=`${data.data.name}`
+userName.textContent = `${data.data.login}`
+userLoc.textContent =`${data.data.location}`
+profileHref.textContent = `https://avatars0.githubusercontent.com/u/24694613?v=4`
+followers.textContent = `${data.data.followers}`
+following.textContent =`${data.data.following}`
+bio.textContent = `${data.data.bio}`
 
+card.appendChild(img)
+card.appendChild(cardInfo)
+card.appendChild(name)
+card.appendChild(userName)
+card.appendChild(userLoc)
+card.appendChild(profile)
+card.appendChild(profileHref)
+card.appendChild(followers)
+card.appendChild(following)
+card.appendChild(bio)
+
+
+
+
+
+
+return card
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
@@ -53,3 +124,4 @@ const followersArray = [];
   luishrd
   bigknell
 */
+}
